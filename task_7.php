@@ -1,58 +1,30 @@
 <?php
 
-$arr = [
+$driver = 'mysql'; // тип базы данных, с которой мы будем работать 
 
-    [
-        'whois' => 'Sunny A. (UI/UX Expert)',
-        'role' => 'Lead Author',
-        'img' => 'img/demo/authors/sunny.png',
-        'alt' => 'Sunny A.',
-        'a1_href' => 'https://twitter.com/@myplaneticket',
-        'a1_val' => '@myplaneticket',
-        'a2_href' => 'https://wrapbootstrap.com/user/myorange',
-        'a2_title' => 'Contact Sunny',
-        'banned' => ''
-    ],
-    [
-        'whois' => 'Jos K. (ASP.NET Developer)',
-        'role' => 'Partner &amp; Contributor',
-        'img' => 'img/demo/authors/josh.png',
-        'alt' => 'Jos K.',
-        'a1_href' => 'https://twitter.com/@atlantez',
-        'a1_val' => '@atlantez',
-        'a2_href' => 'https://wrapbootstrap.com/user/Walapa',
-        'a2_title' => 'Contact Jos',
-        'banned' => ''
-    ],
-    [
-        'whois' => 'Jovanni L. (PHP Developer)',
-        'role' => 'Partner &amp; Contributor',
-        'img' => 'img/demo/authors/jovanni.png',
-        'alt' => 'Jovanni Lo',
-        'a1_href' => 'https://twitter.com/@lodev09',
-        'a1_val' => '@lodev09',
-        'a2_href' => 'https://wrapbootstrap.com/user/lodev09',
-        'a2_title' => 'Contact Jovanni',
-        'banned' => 'banned'
-    ],
-    [
-        'whois' => 'Roberto R. (Rails Developer)',
-        'role' => 'Partner &amp; Contributor',
-        'img' => 'img/demo/authors/roberto.png',
-        'alt' => 'Roberto',
-        'a1_href' => 'https://twitter.com/@sildur',
-        'a1_val' => '@sildur',
-        'a2_href' => 'https://wrapbootstrap.com/user/sildur',
-        'a2_title' => 'Contact Roberto',
-        'banned' => 'banned'
-    ]
+$host = 'localhost';// альтернатива '127.0.0.1' - адрес хоста, в нашем случае локального
 
-];
+$db_name = 'my_database'; // имя базы данных 
+
+$db_user = 'root'; // имя пользователя для базы данных 
+
+$db_password = 'root'; // пароль пользователя 
+
+$charset = 'utf8'; // кодировка по умолчанию 
+
+$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]; // массив с дополнительными настройками подключения. В данном примере мы установили отображение ошибок, связанных с базой данных, в виде исключений
+
+
+$dsn = "$driver:host=$host;dbname=$db_name;charset=$charset";
+
+$pdo = new PDO($dsn, $db_user, $db_password, $options);
+
+$sql = "SELECT * FROM users";
+$statement = $pdo->prepare($sql);
+$statement->execute();
+$arr = $statement->fetchAll(PDO::FETCH_ASSOC);
 
  ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +60,7 @@ $arr = [
                     <div class="panel-container show">
                         <div class="panel-content">
                            <div class="d-flex flex-wrap demo demo-h-spacing mt-3 mb-3">
-
+                            
                             <?php foreach($arr as $item):?>
                                 <div class="<?=$item['banned']; ?> rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
                                     <img src="<?=$item['img']; ?>" alt="<?=$item['alt']; ?>" class="img-thumbnail img-responsive rounded-circle" style="width:5rem; height: 5rem;">
