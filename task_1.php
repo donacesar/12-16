@@ -2,16 +2,20 @@
 
 $list = [
     [
-        'title' => 'Reports'
+        'title' => 'Reports',
+        'tags' => 'reports file'
     ],
     [
-        'title' => 'Analytics'
+        'title' => 'Analytics',
+        'tags' => 'analytics graphs'
     ],
     [
-        'title' => 'Export'
+        'title' => 'Export',
+        'tags' => 'export download'
     ],
     [
-        'title' => 'Storage'
+        'title' => 'Storage',
+        'tags' => 'storage'
     ]
 ];
 
@@ -68,7 +72,7 @@ $list = [
 
                                         <?php foreach($list as $item):?>
                                         <li class="list-group-item">
-                                            <span data-filter-tags="reports file"><?=$item['title']; ?></span>
+                                            <span data-filter-tags="<?=$item['tags']; ?>"><?=$item['title']; ?></span>
                                         </li>
                                         <?php endforeach;?>
                                     </ul>
