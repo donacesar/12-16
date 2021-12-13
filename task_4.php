@@ -42,7 +42,6 @@ $list = [
 
  ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,7 +91,6 @@ $list = [
             </div>
         </main>
         
-
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
         <script>
