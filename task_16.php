@@ -2,16 +2,6 @@
 
 session_start();
 
-if(isset($_SESSION['form'])) {
-    var_dump($_SESSION['form']);
-    unset($_SESSION['form']);
-}
-
-if(isset($_SESSION['message'])) {
-    echo "<br>" . $_SESSION['message'];
-    unset($_SESSION['message']);
-}
-
  ?>
 
 
